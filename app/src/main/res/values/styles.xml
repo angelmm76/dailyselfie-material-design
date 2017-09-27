@@ -17,7 +17,7 @@
         <!--&lt;!&ndash; All customizations that are NOT specific to a particular API-level can go here. &ndash;&gt;-->
     <!--</style>-->
 
-    <style name="AppTheme" parent="Theme.AppCompat">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">#33CA55</item>
         <item name="colorPrimaryDark">#34DD44</item>
         <item name="colorAccent">#FF2051</item>

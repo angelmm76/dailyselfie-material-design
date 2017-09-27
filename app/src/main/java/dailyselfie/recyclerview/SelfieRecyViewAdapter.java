@@ -1,5 +1,6 @@
 package dailyselfie.recyclerview;
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -77,7 +78,7 @@ public class SelfieRecyViewAdapter extends RecyclerView.Adapter<SelfieRecyViewAd
 	// Create new views (invoked by the layout manager)
 	@Override
 	public SelfieViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-		Log.i(TAG, "onCreateViewHolder, position: " + i);
+		Log.i(TAG, "New view created (onCreateViewHolder)");
 		View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_view, viewGroup, false);
 		SelfieViewHolder selfivihol = new SelfieViewHolder(v);
 		return selfivihol;
@@ -87,7 +88,7 @@ public class SelfieRecyViewAdapter extends RecyclerView.Adapter<SelfieRecyViewAd
 	// Set values of cardview fields
 	@Override
 	public void onBindViewHolder(SelfieViewHolder holder, int i) {
-		Log.i(TAG, "onBindViewHolder, position: " + i);
+		Log.i(TAG, "Get view (onBindViewHolder), position: " + i);
 		holder.date.setText(mSelfies.get(i).getDate());
 		holder.thumbnail.setImageBitmap(mSelfies.get(i).getThumbnail());
 		// Delete button
@@ -96,11 +97,21 @@ public class SelfieRecyViewAdapter extends RecyclerView.Adapter<SelfieRecyViewAd
 			@Override
 			public void onClick(View v) {
 				Log.i(TAG, "Delete selfie, position: " + pos);
+				String timeStamp = mSelfies.get(pos).getDate();
 //				Snackbar.make(, "Selfie deleted", Toast.LENGTH_LONG).show();
 				File file = new File(mSelfies.get(pos).getFilePath());
 				file.delete();
 				mSelfies.remove(pos);
 				notifyDataSetChanged();
+				// Snackbar
+				Snackbar.make(v, "Selfie " + timeStamp + " deleted", Snackbar.LENGTH_LONG)
+						.setAction("UNDO", new View.OnClickListener() {
+							@Override
+							public void onClick(View view) {
+								Log.i(TAG, "Snackbar action clicked!");
+							}
+						})
+						.show();
 			}
 		});
 		holder.bind(mSelfies.get(i), listener);
