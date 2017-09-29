@@ -634,8 +634,9 @@ int drawable ic_camera_grey600_36dp 0x7f020057
 int drawable ic_launcher 0x7f020058
 int drawable ic_menu_camera 0x7f020059
 int drawable ic_menu_close_clear_cancel 0x7f02005a
-int drawable notification_template_icon_bg 0x7f02005c
-int drawable stub 0x7f02005b
+int drawable no_image 0x7f02005b
+int drawable notification_template_icon_bg 0x7f02005d
+int drawable stub 0x7f02005c
 int id action0 0x7f0b007e
 int id action_bar 0x7f0b005d
 int id action_bar_activity_content 0x7f0b0000

@@ -43,8 +43,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 
-//public class SelfieViewActivity extends ListActivity {
-public class SelfieViewActivity extends AppCompatActivity {
+public class SelfieViewActivity extends AppCompatActivity {  // ListActivity {
 	private AlarmManager mAlarmManager;
 	private Intent mNotificationIntent;
 	private PendingIntent mNotificationPendingIntent;
@@ -54,7 +53,6 @@ public class SelfieViewActivity extends AppCompatActivity {
 	private CoordinatorLayout mCoordinatorLayout;
 
 	private RecyclerView mRecyclerView;
-//	private RecyclerView.Adapter mRecyAdapter;
 	private SelfieRecyViewAdapter mRecyAdapter;
 	private RecyclerView.LayoutManager mLayoutManager;
 
@@ -96,6 +94,7 @@ public class SelfieViewActivity extends AppCompatActivity {
 
 		setContentView(R.layout.main);
 		mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
+
 		// FAB to take pictures
 		FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
 		floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +129,7 @@ public class SelfieViewActivity extends AppCompatActivity {
 		mRecyAdapter = new SelfieRecyViewAdapter(mSelfies, new SelfieRecyViewAdapter.OnItemClickListener() {
 			@Override public void onItemClick(SelfieRecord item) {
 				Log.i(TAG, "Item clicked (recycled view)");
+				// Start activity that shows selfie
 				Intent showIntent = new Intent(SelfieViewActivity.this, ShowSelfieActivity.class);
 				SelfieRecord selectedSelfie = (SelfieRecord) item;
 				String path = selectedSelfie.getFilePath();
@@ -194,7 +194,7 @@ public class SelfieViewActivity extends AppCompatActivity {
 		Log.i(TAG, "Current Photo path (takePicture): "+ mCurrentPhotoPath);
 //		Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
 //		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.alien1);
-		Bitmap bitmap = loadBitmap(mCurrentPhotoPath);
+		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), getBmpId(mCurrentPhotoPath));
 		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 		// NullPointerException, bitmap=null, if photo rotated!!! mCurrentPhotoPath null onDestroy
 		SelfieRecord selfie = new SelfieRecord(bitmap, timeStamp, mCurrentPhotoPath);
@@ -233,22 +233,21 @@ public class SelfieViewActivity extends AppCompatActivity {
 //	    return image;
 //	}
 
-	private Bitmap loadBitmap (String path) {
-//		Log.i(TAG, "Load bitmap, path: " + path);
-		if (path==null){path = "";}
+	private int getBmpId (String path) {
+		Log.i(TAG, "Load bitmap, path: " + path);
 		switch(path){
-			case "1": return BitmapFactory.decodeResource(getResources(), R.drawable.alien1);
-			case "2": return BitmapFactory.decodeResource(getResources(), R.drawable.alien2);
-			case "3": return BitmapFactory.decodeResource(getResources(), R.drawable.alien3);
-			case "4": return BitmapFactory.decodeResource(getResources(), R.drawable.alien4);
-			case "5": return BitmapFactory.decodeResource(getResources(), R.drawable.alien5);
-			case "6": return BitmapFactory.decodeResource(getResources(), R.drawable.alien6);
-			case "7": return BitmapFactory.decodeResource(getResources(), R.drawable.alien7);
-			case "8": return BitmapFactory.decodeResource(getResources(), R.drawable.alien8);
-			case "9": return BitmapFactory.decodeResource(getResources(), R.drawable.alien9);
+			case "1": return R.drawable.alien1;
+			case "2": return R.drawable.alien2;
+			case "3": return R.drawable.alien3;
+			case "4": return R.drawable.alien4;
+			case "5": return R.drawable.alien5;
+			case "6": return R.drawable.alien6;
+			case "7": return R.drawable.alien7;
+			case "8": return R.drawable.alien8;
+			case "9": return R.drawable.alien9;
 			default:
-				Log.i(TAG, "no path");
-				return BitmapFactory.decodeResource(getResources(), R.drawable.alien1);
+				Log.i(TAG, "No path");
+				return R.drawable.no_image;
 		}
 	}
 
@@ -268,7 +267,7 @@ public class SelfieViewActivity extends AppCompatActivity {
 				path = reader.readLine();
 				Log.i(TAG, "Loaded path: " + path);
 //				bitmap = BitmapFactory.decodeFile(path);
-				bitmap = loadBitmap(path);
+				bitmap = BitmapFactory.decodeResource(getResources(), getBmpId(path));
 //				mAdapter.add(new SelfieRecord(bitmap, date, path));
 				mRecyAdapter.add(new SelfieRecord(bitmap, date, path));
 			}

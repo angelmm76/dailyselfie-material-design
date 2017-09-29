@@ -2593,8 +2593,9 @@ containing a value of this type.
         public static final int ic_launcher=0x7f020058;
         public static final int ic_menu_camera=0x7f020059;
         public static final int ic_menu_close_clear_cancel=0x7f02005a;
-        public static final int notification_template_icon_bg=0x7f02005c;
-        public static final int stub=0x7f02005b;
+        public static final int no_image=0x7f02005b;
+        public static final int notification_template_icon_bg=0x7f02005d;
+        public static final int stub=0x7f02005c;
     }
     public static final class id {
         public static final int action0=0x7f0b007e;

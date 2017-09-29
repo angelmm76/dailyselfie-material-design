@@ -44,6 +44,10 @@
         "source": "C:\\Users\\Angel MM\\StudioProjects\\DailySelfie_RecyclerView\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
     },
     {
+        "merged": "C:\\Users\\Angel MM\\StudioProjects\\DailySelfie_RecyclerView\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\no_image.png",
+        "source": "C:\\Users\\Angel MM\\StudioProjects\\DailySelfie_RecyclerView\\app\\src\\main\\res\\drawable\\no_image.png"
+    },
+    {
         "merged": "C:\\Users\\Angel MM\\StudioProjects\\DailySelfie_RecyclerView\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_radio_material.xml",
         "source": "C:\\Users\\Angel MM\\StudioProjects\\DailySelfie_RecyclerView\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_btn_radio_material.xml"
     },

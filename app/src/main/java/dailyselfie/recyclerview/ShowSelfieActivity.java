@@ -56,8 +56,9 @@ public class ShowSelfieActivity extends Activity {
 
 		/* Get the size of the image */
 		BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-		bmOptions.inJustDecodeBounds = true;
-		BitmapFactory.decodeFile(mSelfiePath, bmOptions);
+		bmOptions.inJustDecodeBounds = true; // return image size only
+//		BitmapFactory.decodeFile(mSelfiePath, bmOptions);
+		BitmapFactory.decodeResource(getResources(), getBmpId(mSelfiePath), bmOptions);
 		int photoW = bmOptions.outWidth;
 		int photoH = bmOptions.outHeight;
 		
@@ -68,14 +69,14 @@ public class ShowSelfieActivity extends Activity {
 		}
 
 		/* Set bitmap options to scale the image decode target */
-		bmOptions.inJustDecodeBounds = false;
+		bmOptions.inJustDecodeBounds = false; // return full image
 		bmOptions.inSampleSize = scaleFactor;
 //		bmOptions.inPurgeable = true;
 
 		/* Decode the JPEG file into a Bitmap */
 //		Bitmap bitmap = BitmapFactory.decodeFile(mSelfiePath, bmOptions);
-//		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.alien1);
-		Bitmap bitmap = loadBitmap(mSelfiePath);
+		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), getBmpId(mSelfiePath), bmOptions);
+//		Bitmap bitmap = loadBitmap(mSelfiePath);
 //		The inBitmap flag is about reusing an existing Bitmap object for decoding a bitmap without
 // 		having to allocate a new Bitmap object. Allocating a new Bitmap for decode can be unnecessarily
 // 		expensive, so you now have the option to reuse a Bitmap when you know it's safe
@@ -87,21 +88,21 @@ public class ShowSelfieActivity extends Activity {
 	
 	}
 
-	private Bitmap loadBitmap (String path) {
+	private int getBmpId (String path) {
 		Log.i(TAG, "Load bitmap, path: " + path);
 		switch(path){
-			case "1": return BitmapFactory.decodeResource(getResources(), R.drawable.alien1);
-			case "2": return BitmapFactory.decodeResource(getResources(), R.drawable.alien2);
-			case "3": return BitmapFactory.decodeResource(getResources(), R.drawable.alien3);
-			case "4": return BitmapFactory.decodeResource(getResources(), R.drawable.alien4);
-			case "5": return BitmapFactory.decodeResource(getResources(), R.drawable.alien5);
-			case "6": return BitmapFactory.decodeResource(getResources(), R.drawable.alien6);
-			case "7": return BitmapFactory.decodeResource(getResources(), R.drawable.alien7);
-			case "8": return BitmapFactory.decodeResource(getResources(), R.drawable.alien8);
-			case "9": return BitmapFactory.decodeResource(getResources(), R.drawable.alien9);
+			case "1": return R.drawable.alien1;
+			case "2": return R.drawable.alien2;
+			case "3": return R.drawable.alien3;
+			case "4": return R.drawable.alien4;
+			case "5": return R.drawable.alien5;
+			case "6": return R.drawable.alien6;
+			case "7": return R.drawable.alien7;
+			case "8": return R.drawable.alien8;
+			case "9": return R.drawable.alien9;
 			default:
-				Log.i(TAG, "no path");
-				return BitmapFactory.decodeResource(getResources(), R.drawable.alien1);
+				Log.i(TAG, "No path");
+				return R.drawable.no_image;
 		}
 	}
 }	
