@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 
 
 public class ShowSelfieActivity extends Activity {
 
 	private ImageView mImageView;
 	private String mSelfiePath;
+	private float mRating;
 
 	private static final String TAG = "Show-DailySelfie";
 	
@@ -27,6 +29,17 @@ public class ShowSelfieActivity extends Activity {
 		mSelfiePath = intent.getExtras().getString("path");
 		
 		setPic();
+
+		RatingBar rBar = (RatingBar) findViewById(R.id.ratingBarShow);
+		rBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+			public void onRatingChanged(RatingBar ratingBar, float rating,
+										boolean fromUser) {
+
+				Log.i(TAG, "Rating changed");
+				mRating = rating;
+
+			}
+		});
 
 	}
 	
@@ -43,6 +56,13 @@ public class ShowSelfieActivity extends Activity {
 
 //		mImageView.setImageDrawable(null);
 		setPic();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+
+//		setResult();
 	}
 	
 	private void setPic() {

@@ -10,6 +10,7 @@
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="#D6FFF8"
         card_view:cardCornerRadius="16dp"
         card_view:cardElevation="4dp">
 
@@ -56,6 +57,7 @@
                 android:layout_alignLeft="@+id/thumbnail"
                 android:layout_marginLeft="50dp"
                 android:focusable="false"
+                android:isIndicator="true"
                 android:numStars="5"
                 android:scaleX="0.5"
                 android:scaleY="0.5"
