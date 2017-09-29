@@ -2804,7 +2804,7 @@ containing a value of this type.
         public static final int notification_template_media=0x7f03002f;
         public static final int notification_template_part_chronometer=0x7f030030;
         public static final int notification_template_part_time=0x7f030031;
-        public static final int row_view=0x7f030032;
+        public static final int item_view =0x7f030032;
         public static final int select_dialog_item_material=0x7f030033;
         public static final int select_dialog_multichoice_material=0x7f030034;
         public static final int select_dialog_singlechoice_material=0x7f030035;

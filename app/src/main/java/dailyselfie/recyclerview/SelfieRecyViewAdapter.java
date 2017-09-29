@@ -25,6 +25,7 @@ public class SelfieRecyViewAdapter extends RecyclerView.Adapter<SelfieRecyViewAd
 		void onItemClick(SelfieRecord selfie);
 	}
 
+	// Provide a suitable constructor (depends on the kind of dataset)
 	public SelfieRecyViewAdapter(ArrayList<SelfieRecord> items, OnItemClickListener listener) {
 		this.mSelfies = items;
 		this.listener = listener;
@@ -39,6 +40,7 @@ public class SelfieRecyViewAdapter extends RecyclerView.Adapter<SelfieRecyViewAd
 		TextView date;
 		Button button;
 
+		// Constructor
 		SelfieViewHolder(View itemView) {
 			super(itemView);
 			cv = (CardView)itemView.findViewById(R.id.card_view);
@@ -60,9 +62,9 @@ public class SelfieRecyViewAdapter extends RecyclerView.Adapter<SelfieRecyViewAd
 	//	List<SelfieRecord> selfies;
 
 	// Provide a suitable constructor (depends on the kind of dataset)
-	SelfieRecyViewAdapter(ArrayList<SelfieRecord> selfies){
-		this.mSelfies = selfies;
-	}
+//	SelfieRecyViewAdapter(ArrayList<SelfieRecord> selfies){
+//		this.mSelfies = selfies;
+//	}
 
 	// Return the size of your dataset (invoked by the layout manager)
 	@Override
@@ -78,8 +80,8 @@ public class SelfieRecyViewAdapter extends RecyclerView.Adapter<SelfieRecyViewAd
 	// Create new views (invoked by the layout manager)
 	@Override
 	public SelfieViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-		Log.i(TAG, "New view created (onCreateViewHolder)");
-		View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_view, viewGroup, false);
+		Log.i(TAG, "New item view created (onCreateViewHolder)");
+		View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_view, viewGroup, false);
 		SelfieViewHolder selfivihol = new SelfieViewHolder(v);
 		return selfivihol;
 	}
@@ -91,7 +93,7 @@ public class SelfieRecyViewAdapter extends RecyclerView.Adapter<SelfieRecyViewAd
 		Log.i(TAG, "Get view (onBindViewHolder), position: " + i);
 		holder.date.setText(mSelfies.get(i).getDate());
 		holder.thumbnail.setImageBitmap(mSelfies.get(i).getThumbnail());
-		// Delete button
+		// Set delete button
 		final int pos = i;
 		holder.button.setOnClickListener(new OnClickListener() {
 			@Override
