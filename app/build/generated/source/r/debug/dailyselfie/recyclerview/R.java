@@ -2623,7 +2623,7 @@ containing a value of this type.
         public static final int button1=0x7f0b007d;
         public static final int buttonPanel=0x7f0b0046;
         public static final int cancel_action=0x7f0b0083;
-        public static final int cancel_alarm=0x7f0b0091;
+        public static final int cancel_alarm=0x7f0b0092;
         public static final int card_view=0x7f0b006c;
         public static final int center=0x7f0b0022;
         public static final int center_horizontal=0x7f0b0023;
@@ -2666,7 +2666,7 @@ containing a value of this type.
         public static final int imageView1=0x7f0b008e;
         public static final int info=0x7f0b008c;
         public static final int item_touch_helper_previous_elevation=0x7f0b0005;
-        public static final int launch_camera=0x7f0b008f;
+        public static final int launch_camera=0x7f0b0090;
         public static final int left=0x7f0b0027;
         public static final int line1=0x7f0b0087;
         public static final int line3=0x7f0b008b;
@@ -2690,6 +2690,7 @@ containing a value of this type.
         public static final int progress_horizontal=0x7f0b0007;
         public static final int radio=0x7f0b0056;
         public static final int ratingBar1=0x7f0b007e;
+        public static final int ratingBarShow=0x7f0b008f;
         public static final int recy_view=0x7f0b0081;
         public static final int right=0x7f0b0028;
         public static final int screen=0x7f0b001c;
@@ -2710,7 +2711,7 @@ containing a value of this type.
         public static final int search_voice_btn=0x7f0b006a;
         public static final int select_dialog_listview=0x7f0b006b;
         public static final int selfie_date=0x7f0b007c;
-        public static final int set_alarm=0x7f0b0090;
+        public static final int set_alarm=0x7f0b0091;
         public static final int shortcut=0x7f0b0055;
         public static final int showCustom=0x7f0b0011;
         public static final int showHome=0x7f0b0012;

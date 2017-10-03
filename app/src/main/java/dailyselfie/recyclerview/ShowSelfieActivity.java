@@ -27,16 +27,19 @@ public class ShowSelfieActivity extends Activity {
 		
 		Intent intent = getIntent();
 		mSelfiePath = intent.getExtras().getString("path");
+		mRating = Float.parseFloat(intent.getExtras().getString("rating"));
 		
 		setPic();
 
-		RatingBar rBar = (RatingBar) findViewById(R.id.ratingBarShow);
+		final RatingBar rBar = (RatingBar) findViewById(R.id.ratingBarShow);
+		rBar.setRating(mRating);
 		rBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 			public void onRatingChanged(RatingBar ratingBar, float rating,
 										boolean fromUser) {
 
 				Log.i(TAG, "Rating changed");
 				mRating = rating;
+				rBar.setRating(mRating);
 
 			}
 		});
@@ -62,7 +65,7 @@ public class ShowSelfieActivity extends Activity {
 	protected void onDestroy() {
 		super.onDestroy();
 
-//		setResult();
+		setResult();
 	}
 	
 	private void setPic() {

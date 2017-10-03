@@ -66,6 +66,8 @@ public class SelfieViewActivity extends AppCompatActivity {  // ListActivity {
 	
 	private String mCurrentPhotoPath;
 
+	static private final int SHOW_SELFIE_CODE = 1;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -134,7 +136,10 @@ public class SelfieViewActivity extends AppCompatActivity {  // ListActivity {
 				SelfieRecord selectedSelfie = (SelfieRecord) item;
 				String path = selectedSelfie.getFilePath();
 				showIntent.putExtra("path", path);
-				startActivity(showIntent);
+//				String rating = selectedSelfie.getRating();
+//				showIntent.putExtra("rating", rating);
+//				startActivity(showIntent);
+				startActivityForResult(showIntent, SHOW_SELFIE_CODE);
 			}
 		});
 		mRecyclerView.setAdapter(mRecyAdapter);
@@ -163,13 +168,13 @@ public class SelfieViewActivity extends AppCompatActivity {  // ListActivity {
 		// Save mCurrentPhotoPath?????????????
 	}
 	
-//	@Override
-//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//
-//		if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
-//
-//		}
-//	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		if (requestCode == SHOW_SELFIE_CODE && resultCode == RESULT_OK) {
+
+		}
+	}
 	
 	private void takePicture() {
 	    
