@@ -59,12 +59,12 @@ public class SelfieViewActivity extends AppCompatActivity {  // ListActivity {
 	private ArrayList<SelfieRecord> mSelfies = new ArrayList<SelfieRecord>();
 
 	private static final String TAG = "Proyect-DailySelfie";
-	private static final int REQUEST_TAKE_PHOTO = 2;
 	private static final String FILE_NAME = "Daily_Selfie_data.txt";
 		
 	private static final long ALARM_INTERVAL = 2 * 60 * 1000L; // two minutes
 	
 	private String mCurrentPhotoPath;
+	private SelfieRecord mSelectedSelfie;
 
 	static private final int SHOW_SELFIE_CODE = 1;
 
@@ -133,11 +133,13 @@ public class SelfieViewActivity extends AppCompatActivity {  // ListActivity {
 				Log.i(TAG, "Item clicked (recycled view)");
 				// Start activity that shows selfie
 				Intent showIntent = new Intent(SelfieViewActivity.this, ShowSelfieActivity.class);
-				SelfieRecord selectedSelfie = (SelfieRecord) item;
-				String path = selectedSelfie.getFilePath();
+//				SelfieRecord selectedSelfie = (SelfieRecord) item;
+//				String path = selectedSelfie.getFilePath();
+				mSelectedSelfie = (SelfieRecord) item;
+				String path = mSelectedSelfie.getFilePath();
 				showIntent.putExtra("path", path);
-//				String rating = selectedSelfie.getRating();
-//				showIntent.putExtra("rating", rating);
+				String rating = String.valueOf(mSelectedSelfie.getRating());
+				showIntent.putExtra("rating", rating);
 //				startActivity(showIntent);
 				startActivityForResult(showIntent, SHOW_SELFIE_CODE);
 			}
@@ -170,9 +172,13 @@ public class SelfieViewActivity extends AppCompatActivity {  // ListActivity {
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-		if (requestCode == SHOW_SELFIE_CODE && resultCode == RESULT_OK) {
-
+		if (requestCode == SHOW_SELFIE_CODE) {
+			if (resultCode == Activity.RESULT_OK) {
+				float rating = Float.parseFloat(data.getStringExtra(data.EXTRA_TEXT));
+				Log.i(TAG, "Activity result, rating: " + rating);
+				mSelectedSelfie.setRating(rating);
+//				mRecyAdapter.onBindViewHolder();  // rating not shown until call onBindviewholder
+			}
 		}
 	}
 	
@@ -202,7 +208,7 @@ public class SelfieViewActivity extends AppCompatActivity {  // ListActivity {
 		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), getBmpId(mCurrentPhotoPath));
 		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 		// NullPointerException, bitmap=null, if photo rotated!!! mCurrentPhotoPath null onDestroy
-		SelfieRecord selfie = new SelfieRecord(bitmap, timeStamp, mCurrentPhotoPath);
+		SelfieRecord selfie = new SelfieRecord(bitmap, timeStamp, mCurrentPhotoPath, 0);
 //		mAdapter.add(selfie);
 		mRecyAdapter.add(selfie);
 
@@ -274,7 +280,7 @@ public class SelfieViewActivity extends AppCompatActivity {  // ListActivity {
 //				bitmap = BitmapFactory.decodeFile(path);
 				bitmap = BitmapFactory.decodeResource(getResources(), getBmpId(path));
 //				mAdapter.add(new SelfieRecord(bitmap, date, path));
-				mRecyAdapter.add(new SelfieRecord(bitmap, date, path));
+				mRecyAdapter.add(new SelfieRecord(bitmap, date, path, 0));
 			}
 
 		} catch (FileNotFoundException e) {

@@ -19,6 +19,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:numStars="5"
-        android:stepSize="1" />
+        android:stepSize="0.1" />
 
 </RelativeLayout>

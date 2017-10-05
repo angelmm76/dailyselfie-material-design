@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.io.File;
@@ -39,6 +40,7 @@ public class SelfieRecyViewAdapter extends RecyclerView.Adapter<SelfieRecyViewAd
 		ImageView thumbnail;
 		TextView date;
 		Button button;
+		RatingBar ratingBar;
 
 		// Constructor
 		SelfieViewHolder(View itemView) {
@@ -47,6 +49,7 @@ public class SelfieRecyViewAdapter extends RecyclerView.Adapter<SelfieRecyViewAd
 			date = (TextView)itemView.findViewById(R.id.selfie_date);
 			thumbnail = (ImageView)itemView.findViewById(R.id.thumbnail);
 			button = (Button) itemView.findViewById(R.id.button1);
+			ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar1);
 		}
 
 		// On item click listener
@@ -93,6 +96,7 @@ public class SelfieRecyViewAdapter extends RecyclerView.Adapter<SelfieRecyViewAd
 		Log.i(TAG, "Get view (onBindViewHolder), position: " + i);
 		holder.date.setText(mSelfies.get(i).getDate());
 		holder.thumbnail.setImageBitmap(mSelfies.get(i).getThumbnail());
+		holder.ratingBar.setRating(mSelfies.get(i).getRating());
 		// Set delete button
 		final int pos = i;
 		holder.button.setOnClickListener(new OnClickListener() {

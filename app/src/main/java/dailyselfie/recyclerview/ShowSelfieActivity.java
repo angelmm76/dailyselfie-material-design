@@ -5,13 +5,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 
 
-public class ShowSelfieActivity extends Activity {
+public class ShowSelfieActivity extends AppCompatActivity {
 
 	private ImageView mImageView;
 	private String mSelfiePath;
@@ -37,9 +38,10 @@ public class ShowSelfieActivity extends Activity {
 			public void onRatingChanged(RatingBar ratingBar, float rating,
 										boolean fromUser) {
 
-				Log.i(TAG, "Rating changed");
+				Log.i(TAG, "Rating changed: " + rating);
 				mRating = rating;
 				rBar.setRating(mRating);
+				setIntentResult();
 
 			}
 		});
@@ -61,11 +63,14 @@ public class ShowSelfieActivity extends Activity {
 		setPic();
 	}
 
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
+	private void setIntentResult(){
+		String rating = String.valueOf(mRating);
+		Log.i(TAG, "Setting intent result, rating: " + mRating);
 
-		setResult();
+		Intent ratingIntent = new Intent(ShowSelfieActivity.this, SelfieViewActivity.class);
+		ratingIntent.putExtra(Intent.EXTRA_TEXT, rating);
+
+		setResult(RESULT_OK, ratingIntent);
 	}
 	
 	private void setPic() {

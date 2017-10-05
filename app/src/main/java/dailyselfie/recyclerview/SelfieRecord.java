@@ -1,6 +1,7 @@
 package dailyselfie.recyclerview;
 
 import android.graphics.Bitmap;
+import android.widget.RatingBar;
 
 public class SelfieRecord {
 	
@@ -10,15 +11,17 @@ public class SelfieRecord {
 	private String mSelfieDate;
 	private Bitmap mThumbnailBitmap;
 	private String mFilePath;
+	private float mRating;
 	
-	public SelfieRecord(Bitmap bitmap, String date, String path) {
+	public SelfieRecord(Bitmap bitmap, String date, String path, float rating) {
 		this.mThumbnailBitmap = Bitmap.createScaledBitmap(bitmap,
 				bitmap.getWidth() / scale, bitmap.getHeight() / scale, false);
 		this.mSelfieDate = date;
 		this.mFilePath = path;
+		this.mRating = rating;
 	}
 
-	public SelfieRecord() {	
+	public SelfieRecord() {
 	}
 	
 	public String getDate() {
@@ -43,6 +46,14 @@ public class SelfieRecord {
 	
 	public void setFilePath(String Path) {
 		this.mFilePath= Path;
+	}
+
+	public float getRating() {
+		return mRating;
+	}
+
+	public void setRating(float rating) {
+		this.mRating = rating;
 	}
 	
 	public String toString() {
